@@ -17,11 +17,11 @@ google_port_smtp = 465
 google_default_imap = "imap.gmail.com"
 
 # Load Session Data
-pixelmail_session = Path("")
+savirmail_session = Path("")
 
 print("Reading Session File...")
-if os.path.isfile("pixelmail_session"):
-    session_file = open("pixelmail_session", "r")
+if os.path.isfile("savirmail_session"):
+    session_file = open("savirmail_session", "r")
     sender_txt = session_file.readline()
     passwd_txt = session_file.readline()
     server_smtp_txt = session_file.readline()
@@ -42,7 +42,7 @@ if os.path.isfile("pixelmail_session"):
 
 # Create Tabs
 root = Tk()
-root.title("PixelMail")
+root.title("SavirMail")
 tabControl = ttk.Notebook(root)          # Create Tab Control
 # Sending Tab
 tab1 = ttk.Frame(tabControl)            # Create a tab 
@@ -134,7 +134,7 @@ def showPasswd():
 # Load Saved Email
 def loadMail():
     print("Loading Mail File...")   
-    mail_file = open("pixelmail_mail", "r")
+    mail_file = open("savirmail_mail", "r")
     recipient.delete(0,END)
     recipient.insert(0,mail_file.readline())
     subject.delete(0,END)
@@ -151,7 +151,7 @@ def loadMail():
 # Save Email
 def saveMail():
     print("Saving to Mail File...")
-    mail_file = open("pixelmail_mail", "w")
+    mail_file = open("savirmail_mail", "w")
     mail_file.write(recipient.get() + "\n")
     mail_file.write(subject.get() + "\n")
     mail_file.write(mail_message.get("1.0",END))
@@ -162,7 +162,7 @@ def saveMail():
 # Save Login Info
 def saveLogin():
     print("Writing to Session File...")
-    session_file = open("pixelmail_session", "w")
+    session_file = open("savirmail_session", "w")
     session_file.write(sender.get() + "\n")
     session_file.write(passwd.get() + "\n")
     session_file.write(server_smtp.get() + "\n")
@@ -255,8 +255,8 @@ text_report_label = Label(info, text="")
 text_report_label.grid(row=14, column=1, columnspan=2)
 
 
-# Load Session Info it pixelmail_session exists
-if os.path.isfile("pixelmail_session"):
+# Load Session Info it savirmail_session exists
+if os.path.isfile("savirmail_session"):
     sender.delete(0,END)
     passwd.delete(0,END)
     server_smtp.delete(0,END)
@@ -367,6 +367,6 @@ chat_msg_send = Label(chatView, text="chat_msg_send", relief="raised")
 chat_msg_send.grid(row=3, column=3, sticky=W)
 '''
 
-text_report_label.config(text="PixelMail loaded")
+text_report_label.config(text="SavirMail loaded")
 print("Finished loading")
 root.mainloop()
